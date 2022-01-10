@@ -19,7 +19,7 @@ The algorithm uses average images of a beach of interest (see figure 1). The ima
   <img src="figs/example_ave_img.png"  width="600" />
 </p>
 <p align="center">
-    <em>Figure 1: To identify the coordinates of square part of original image.</em>
+    <em>Figure 1: Example of the identification of the coordinates of square part on original image.</em>
 </p>
 
 **Folders**
