@@ -98,7 +98,7 @@ class sandbar:
         points = []
 
         # click event function
-        def click_event(event, x, y):
+        def click_event(event, x, y, flags, param):
             """
             Returns the coordinates you have selected.
             This function uses a CV2 tools.
