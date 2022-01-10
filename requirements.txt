@@ -1,0 +1,9 @@
+tensorflow-gpu==2.6.0
+opencv-python~=4.5.5.62
+matplotlib~=3.5.1
+numpy~=1.19.5
+scikit-image
+scikit-learn
+pillow
+PyQt5==5.9.2
+scipy~=1.7.3
