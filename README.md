@@ -4,7 +4,6 @@ This code allow to identify the presence of sand bar using a convolutional neura
 
 The model checkpoints are available at [Google Drive Folder](https://drive.google.com/drive/folders/1w_kOFx7su7BONQdwQQwx9_V-4pj2-bAY?usp=sharing). It's necessary to download files and put on model folder.
 
-
 ## Inputs and parameters
 **Parameters**
 - `main_path`: Main folder where the repository is cloned    
@@ -17,10 +16,10 @@ The model checkpoints are available at [Google Drive Folder](https://drive.googl
 The algorithm uses average images of a beach of interest (see figure 1). The image size does not matter but to get a prediction is necessary to select a square part of original image 512x512 in size due to network requirements. An interactive algorithm is used to identify the top left coordinate of that square image.
 
 <p align="center">
-  <img src="figs/orientation.png"  width="500" />
+  <img src="figs/example_ave_img.png"  width="600" />
 </p>
 <p align="center">
-    <em>Figure 1: Examples of wave directions.</em>
+    <em>Figure 1: To identify the coordinates of square part of original image.</em>
 </p>
 
 **Folders**
