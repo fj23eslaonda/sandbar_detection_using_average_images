@@ -1,2 +1,3 @@
 # Sand bar detection using average images
-This code allow identifying the presence of sand bar using a modification convolutional network propose by [Elienson et al (2021)](https://github.com/anellenson/DeepBeachState) and average images.
+
+This code allow to identify the presence of sand bar using a convolutional neural network proposed by [Elienson et al (2021)](https://github.com/anellenson/DeepBeachState) and average images. The original CNN allows to identify five different types of beach state, but the objective of this repository is only to detect the existence of sand bar and not its shape, then the last layer of CNN was modified. The last layer was reduced from five neurons (five types of beach state) to one neuron where 1 corresponds to the presence of sand bar and 0 other case.
