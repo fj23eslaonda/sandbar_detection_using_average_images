@@ -24,18 +24,18 @@ The algorithm uses average images of a beach of interest (see figure 1). The ima
 
 **Folders**
 ```
-Main_folder
+sandbar_detection_using_average_images
     ├─── beach_path
          ├─── frames
               ├─── P_00000.png
               ├─── ...
               ├─── P_N.png
-         ├─── sandbar_results
+         ├─── results
     ├─── model
-         ├─── best_model_final.h5
-         ├─── model_final.json
-    ├─── duck_model.py
-    ├─── sandbar.py
+         ├─── best_1.h5
+         ├─── model_1.json
+    ├─── main.py
+    ├─── sandbar_function.py
     ├─── run_prediction.py
     ├─── requirements.py
 ```    
@@ -54,13 +54,11 @@ The algorithm uses tensorflow packages then it's necessary to create a new virtu
 3. `git clone https://github.com/fj23eslaonda/sandbar_detection_using_wave_breaking.git`
 
 #### Activate virtual environment, change directory and run algorithm
-1. `cd ./Desktop/main_path`
+1. `cd ./Desktop/sandbar_detection_using_average_images`
 2. `pip install -r requirements.txt`
 3. Create **folders** with datasets
-4. `python3 run_prediction.py --beach_path /beach_folder/ --image_path /frames/ --output_path /prediction_mask/ --orientation vertical/horizontal --plot_mask True --plot_mask_over_mask True`
+4. `python3 run_prediction.py --beach_path /beach_folder/ --image_path /frames/ --output_path /results/`
 
 ## Comments
 - `main_path` by default is the folder where the repository is cloned using `os.getcwd()`
-- `plot_mask` by default is `False`
-- `plot_mask_over_img` by default is `False`
 
