@@ -36,11 +36,14 @@ class sandbar:
                  main_path,
                  image_path,
                  output_path,
-                 beach_path):
+                 beach_path, 
+                 number_img):
+
         self.main_path   = main_path      # Main folder
         self.image_path  = image_path     # Path containing the images
         self.output_path = output_path    # Path to save results
         self.beach_path  = beach_path     # Folder containing images and results
+        self.number_img  = number_img     # Number of images used
 
     # -----------------------------------------------------------------
     # 
@@ -164,8 +167,11 @@ class sandbar:
         # Load prediction
         prediction = open(self.main_path + self.beach_path + self.output_path + '/prediction.json')
         prediction = dict(json.load(prediction))
-        # List of images
-        list_img = self.load_list_img()
+        # Image names
+        if self.number_img != False:
+            list_img = self.load_list_img()[:self.number_img]
+        else:
+            list_img = self.load_list_img()
         # plot size
         plt.figure(figsize=(8, 6))
 
@@ -194,39 +200,6 @@ class sandbar:
             plt.pause(1)
         plt.close('all')
 
-    # -----------------------------------------------------------------
-    #
-    # PLOT RESULTS
-    #
-    # -----------------------------------------------------------------
-    def save_results(self):
-        """
-        Returns a plot of complete image and save it
-        """
-        # Load prediction
-        prediction = open(self.main_path + self.beach_path + self.output_path + '/prediction.json')
-        prediction = dict(json.load(prediction))
-        # Image names
-        list_img = self.load_list_img()
-
-        for name_img in list_img:
-            # Plot size
-            plt.figure(figsize=(16, 8))
-            plt.cla()
-            # Load image
-            img = cv2.imread(self.main_path + self.beach_path + self.image_path + name_img)
-            img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            # Plot configuration
-            plt.imshow(img, vmax=np.max(img))
-            plt.xlabel("Alongshore distance, x [pixels]", fontsize=11)
-            plt.ylabel("Cross-shore distance, y [pixels]", fontsize=11)
-            # If prediction is true, the points of sandbar are plotted
-            if bool(prediction[name_img]):
-                x_point, y_point = identify_sandbar_pts(img_gray, 'vertical', window=100, prominence=4)
-                plt.scatter(x_point, y_point, c='r', marker='x')
-            plt.savefig('.' + self.beach_path + self.output_path + name_img,
-                        bbox_inches='tight')
-            plt.close('all')
 
     # -----------------------------------------------------------------
     # 
@@ -239,11 +212,18 @@ class sandbar:
         """
         # Inputs
         prediction = dict()
-        list_img   = self.load_list_img()
+        # Image names
+        if self.number_img != False:
+            list_img = self.load_list_img()[:self.number_img]
+        else:
+            list_img = self.load_list_img()
         model      = self.load_model()
         points     = self.select_window(list_img[0])
         # ---------------------------------------------------------
-        for name_img in list_img:
+        for ix, name_img in enumerate(list_img):
+            print('-----------------------------------------------------------------')
+            print()
+            print('Prediction ' + str(ix+1) + ' of '+ str(len(list_img)) + ' images')
             x_tst = self.image_to_matrix(name_img, points)
             y_predicted = model.predict(x_tst, verbose=True) > 0.5
             prediction[name_img] = int(y_predicted)
@@ -252,9 +232,6 @@ class sandbar:
             json.dump(prediction, jsonfile)
         # ---------------------------------------------------------
         query = input('Would you like to see the results?: ')
-        if query == 'True':
+        if query:
             self.plot_results(points)
-        # ---------------------------------------------------------
-        save_plot = input('Would you like to save the results?: ')
-        if save_plot == 'True':
-            self.save_results()
+        

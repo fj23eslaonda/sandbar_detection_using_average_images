@@ -35,6 +35,7 @@ def parse_args():
                         help='Duck model main path')
     parser.add_argument('--image_path', type=str, help='Input path for images')
     parser.add_argument('--output_path', type=str, help='Output path for mask')
+    parser.add_argument('--number_img', type=int, default= False,help='Number of images used')
 
     return parser.parse_args()
 
@@ -50,12 +51,14 @@ main_path   = args.main_path
 beach_path  = args.beach_path
 image_path  = args.image_path
 output_path = args.output_path
+number_img  = args.number_img
 
 # Call all functions
 functions = main.sandbar(main_path,
                          image_path,
                          output_path,
-                         beach_path)
+                         beach_path, 
+                         number_img)
 
 try:
     shutil.rmtree('.' + args.beach_path + args.output_path)
