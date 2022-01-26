@@ -10,6 +10,7 @@ The model checkpoints are available at [Google Drive Folder](https://drive.googl
 - `image_path`: Path of frames folder 
 - `output_path`: Path of mask folder 
 - `beach_path`: Path of beach folder to save results (inside of main_path)
+- `number_img`: Number of images to be used
 
 **Inputs**
 
@@ -58,7 +59,7 @@ The algorithm uses tensorflow packages then it's necessary to create a new virtu
 1. `cd ./sandbar_detection_using_average_images`
 2. `pip install -r requirements.txt`
 3. Create **folders** with datasets
-4. `python3 run_prediction.py --beach_path /beach_folder/ --image_path /frames/ --output_path /results/`
+4. `python3 run_prediction.py --beach_path /beach_folder/ --image_path /frames/ --output_path /results/ --number_img 50`
 
 ## Comments
 - `main_path` by default is the folder where the repository is cloned using `os.getcwd()`
