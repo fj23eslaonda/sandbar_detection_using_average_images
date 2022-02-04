@@ -4,13 +4,17 @@ This code allow to identify the presence of sand bar using a convolutional neura
 
 The model checkpoints are available at [Google Drive Folder](https://drive.google.com/drive/folders/1w_kOFx7su7BONQdwQQwx9_V-4pj2-bAY?usp=sharing). It's necessary to download files and put on model folder.
 
+
 ## Inputs and parameters
 **Parameters**
-- `main_path`: Main folder where the repository is cloned    
-- `image_path`: Path of frames folder 
-- `output_path`: Path of mask folder 
-- `beach_path`: Path of beach folder to save results (inside of main_path)
-- `number_img`: Number of images to be used
+```
+all_inputs = {
+    "beach_folder": "Portlanouvelle",          # This folder contains all images and results
+    "image_folder": "frames",                  # Folder with all images to use
+    "results_folder": "sandbar_results"        # Folder to save results
+}
+```
+**Note**: the main path is the folder where the repository is cloned and the code uses `os.getcwd()` to get main path by default.
 
 **Inputs**
 
@@ -35,10 +39,11 @@ sandbar_detection_using_average_images
     ├─── model
          ├─── best_1.h5
          ├─── model_1.json
+    ├─── sandbar_functions.py
+    ├─── additional_functions.py
     ├─── main.py
-    ├─── sandbar_function.py
-    ├─── run_prediction.py
     ├─── requirements.py
+    ├─── all_inputs.py
 ```    
 
 ## Implementation
@@ -59,7 +64,7 @@ The algorithm uses tensorflow packages then it's necessary to create a new virtu
 1. `cd ./sandbar_detection_using_average_images`
 2. `pip install -r requirements.txt`
 3. Create **folders** with datasets
-4. `python3 run_prediction.py --beach_path /beach_folder/ --image_path /frames/ --output_path /results/ --number_img 50`
+4. `python3 run_prediction.py --parameters ./all_inputs.json --number_img 50`
 
 ## Comments
 - `main_path` by default is the folder where the repository is cloned using `os.getcwd()`
