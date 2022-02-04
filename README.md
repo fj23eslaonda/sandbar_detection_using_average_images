@@ -66,6 +66,4 @@ The algorithm uses tensorflow packages then it's necessary to create a new virtu
 3. Create **folders** with datasets
 4. `python3 main.py --parameters ./all_inputs.json --number_img 50`
 
-## Comments
-- `main_path` by default is the folder where the repository is cloned using `os.getcwd()`
 
